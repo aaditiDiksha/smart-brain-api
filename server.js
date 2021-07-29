@@ -43,10 +43,10 @@ app.get("/profile/:id", auth.requireAuth, (req, res) => {
   profile.handleProfileGet(req, res, db);
 });
 
-app.put("/image", (req, res) => {
+app.put("/image",auth.requireAuth, (req, res) => {
   image.handleImage(req, res, db);
 });
-app.post("/imageurl", (req, res) => {
+app.post("/imageurl", auth.requireAuth,(req, res) => {
   image.handleApiCall(req, res);
 });
 
