@@ -30,7 +30,7 @@ const handleSignin = (req, db, bcrypt) => {
 
 const signToken = (id, email) => {
   const jwtPayLoad = { id, email };
-  return jwt.sign(jwtPayLoad, process.env.JWT_SECRET_KEY, { expiresIn: "2d" });
+  return jwt.sign(jwtPayLoad, `${process.env.JWT_SECRET_KEY}`, { expiresIn: "2d" });
 };
 
 const createSession = (data) => {
