@@ -24,7 +24,7 @@ const db = knex({
 });
 
 const app = express();
-
+console.log('checking log')
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
