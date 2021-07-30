@@ -39,7 +39,8 @@ app.post("/register", (req, res) => {
   register.generateAuthToken(req, res, db, bcrypt);
 });
 // app.get('/profile/:id', auth.requireAuth, (req, res) => { profile.handleProfileGet(req, res, db)})
-app.get("/profile/:id", auth.requireAuth, (req, res) => {
+app.get("/profile/:id", (req, res) => {
+  console.log('am i even getting called ' + req)
   profile.handleProfileGet(req, res, db);
 });
 
