@@ -42,7 +42,7 @@ const createSession = (data) => {
 const getAuthTokenId = (req, res) => {
   const { authorization } = req.headers;
   const token = authorization.split(" ")[1];
-  return jwt.verify(token, process.env.JWT_SECRET_KEY, (err, jwtPayLoad) => {
+  return jwt.verify(token, `${process.env.JWT_SECRET_KEY}`, (err, jwtPayLoad) => {
     if (err) return res.status(401).json("Unauthorized");
     return res.json({ success: true, userId: jwtPayLoad.id, token });
   });
