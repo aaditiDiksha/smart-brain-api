@@ -24,7 +24,6 @@ const db = knex({
 });
 
 const app = express();
-console.log('checking log')
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -39,7 +38,9 @@ app.post("/register", (req, res) => {
   register.generateAuthToken(req, res, db, bcrypt);
 });
 // app.get('/profile/:id', auth.requireAuth, (req, res) => { profile.handleProfileGet(req, res, db)})
-app.get("/profile/:id", (req,res) => console.log('mpmp'));
+app.get("/profile/:id", auth.requireAuth, (req, res) => {
+  profile.handleProfileGet(req, res, db);
+});
 
 app.put("/image",auth.requireAuth, (req, res) => {
   image.handleImage(req, res, db);
