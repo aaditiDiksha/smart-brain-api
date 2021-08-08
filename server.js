@@ -1,7 +1,6 @@
 /*"start": "node server.js" */
 require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt-nodejs");
 const cors = require("cors");
 const knex = require("knex");
@@ -37,7 +36,6 @@ app.post("/signin", (req, res) =>
 app.post("/register", (req, res) => {
   register.generateAuthToken(req, res, db, bcrypt);
 });
-// app.get('/profile/:id', auth.requireAuth, (req, res) => { profile.handleProfileGet(req, res, db)})
 app.get("/profile/:id", auth.requireAuth, (req, res) => {
   profile.handleProfileGet(req, res, db);
 });
@@ -53,11 +51,4 @@ app.listen(process.env.PORT || 3000, () => {
   console.log(`app is running on port ${process.env.PORT}`);
 });
 
-/*
-/ --> res = this is working
 
-/signin --> Post = success/fail
-/register --> post = user
-/profile/:userId --> GET = user
-/image --> PUT --> user
-*/
